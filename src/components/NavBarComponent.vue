@@ -1,14 +1,8 @@
 <script setup>
-import { ref } from "vue";
+import items from "../models/routes.js";
 import { useRoute } from "vue-router";
 
 const route = useRoute();
-const items = ref([
-  { title: "Inicio", path: "/" },
-  { title: "Hoteles", path: "/hoteles" },
-  { title: "Tipos de habitaciones", path: "/tipo-habitaciones" },
-  { title: "Acomodaciones", path: "/acomodaciones" },
-]);
 </script>
 <template>
   <nav class="navbar h-25 navbar-expand-md bg-light">
@@ -29,12 +23,12 @@ const items = ref([
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
-          <li v-for="item in items" :key="item.title" class="nav-item">
+          <li v-for="item in items" :key="item.name" class="nav-item">
             <router-link
               class="nav-link mx-3 fw-bold"
               :class="route.path === item.path ? 'text-success' : ''"
               :to="item.path"
-              >{{ item.title }}</router-link
+              >{{ item.name }}</router-link
             >
           </li>
         </ul>
