@@ -1,13 +1,13 @@
 <script setup>
 defineProps({
-  class: {
+  classProp: {
     type: String,
-    default: "btn",
+    default: "btn btn-primary",
   },
 });
 </script>
 <template>
-  <button class="{{class}}">
+  <button :class="classProp">
     <slot id="text" />
   </button>
 </template>

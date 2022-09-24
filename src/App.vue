@@ -1,7 +1,6 @@
 <script setup>
 import { RouterLink, RouterView } from "vue-router";
 import HelloWorld from "./components/HelloWorld.vue";
-import ButtonComponent from "./components/ButtonComponent.vue";
 </script>
 
 <template>
@@ -20,7 +19,6 @@ import ButtonComponent from "./components/ButtonComponent.vue";
       <nav>
         <RouterLink to="/">Home</RouterLink>
         <RouterLink to="/about">About</RouterLink>
-        <ButtonComponent>HOLA</ButtonComponent>
       </nav>
     </div>
   </header>
