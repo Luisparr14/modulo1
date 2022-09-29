@@ -66,7 +66,7 @@ defineProps({
 });
 </script>
 <template>
-  <div class="card-body mx-5 table-responsive">
+  <div class="card-body table-responsive">
     <table class="table table-sm align-middle">
       <thead>
         <tr>
