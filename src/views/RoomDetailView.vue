@@ -1,10 +1,7 @@
 <script setup>
 import BreadCrumbComponent from "../components/BreadCrumbComponent.vue";
 </script>
-
 <template>
-  <main>
-    <h1>Inicio</h1>
-    <BreadCrumbComponent />
-  </main>
+  <h1>Habitación</h1>
+  <BreadCrumbComponent />
 </template>

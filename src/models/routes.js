@@ -39,8 +39,8 @@ export default [
         path: "habitaciones/",
         children: [
           {
-            path: "",
-            name: "Rooms",
+            path: ":id",
+            name: "HotelRooms",
             meta: {
               breadcrumb: "Inicio-Hoteles-Habitaciones",
               breadcrumbName: "Index-Hotels",
@@ -57,7 +57,7 @@ export default [
             // component: () => import("../views/RoomCreateView.vue"),
           },
           {
-            path: ":id",
+            path: "editar/:id",
             name: "RoomDetail",
             meta: {
               breadcrumb:
