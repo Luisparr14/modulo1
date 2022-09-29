@@ -1,12 +1,19 @@
 export default [
   {
     path: "/",
-    name: "Index",
-    breadcrumb: "Inicio-Hoteles-Actualizar datos",
-    component: () => import("../views/HomeView.vue"),
+    name: "Inicio",
+    children: [
+      {
+        path: "",
+        name: "Index",
+        breadcrumb: "Inicio-Hoteles-Actualizar datos",
+        component: () => import("../views/HomeView.vue"),
+      },
+    ],
   },
   {
     path: "/hoteles/",
+    name: "Hoteles",
     children: [
       {
         path: "",
@@ -24,6 +31,7 @@ export default [
         name: "HotelDetail",
         meta: {
           breadcrumb: "Inicio-Hoteles-Actualizar Datos de Hotel",
+          breadcrumbName: "Index-Hotels",
         },
         component: () => import("../views/HotelDetailView.vue"),
       },
@@ -35,6 +43,7 @@ export default [
             name: "Rooms",
             meta: {
               breadcrumb: "Inicio-Hoteles-Habitaciones",
+              breadcrumbName: "Index-Hotels",
             },
             component: () => import("../views/RoomsView.vue"),
           },
@@ -43,6 +52,7 @@ export default [
             name: "CreateRoom",
             meta: {
               breadcrumb: "Inicio-Hoteles-Habitaciones-Crear Habitación",
+              breadcrumbName: "Index-Hotels-Rooms",
             },
             // component: () => import("../views/RoomCreateView.vue"),
           },
@@ -52,6 +62,7 @@ export default [
             meta: {
               breadcrumb:
                 "Inicio-Hoteles-Habitaciones-Actualizar Datos de Habitación",
+              breadcrumbName: "Index-Hotels-Rooms",
             },
             component: () => import("../views/RoomDetailView.vue"),
           },
