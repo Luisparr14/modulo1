@@ -3,9 +3,9 @@ import { ref, onMounted } from "vue";
 import { useRouter } from "vue-router";
 import axios from "../config/axios";
 import TableComponent from "../components/TableComponent.vue";
-import ButtonComponent from "../components/ButtonComponent.vue";
-
+import IndicatorPageComponent from "../components/IndicatorPageComponent.vue";
 const router = useRouter();
+
 const hoteles = ref([]);
 
 const actions = [
@@ -28,17 +28,10 @@ onMounted(async () => {
   const { data } = await axios.get("/hotels");
   hoteles.value = data.data;
 });
-
-const createHotel = () => {
-  router.push({ name: "CreateHotel" });
-};
 </script>
 <template>
-  <h1>Hotel</h1>
-  <ButtonComponent
-    @click="createHotel"
-    :class="'btn btn-success'"
-    :label="'Crear hotel'"
-  />
-  <TableComponent :data="hoteles" :actions="actions" />
+  <section class="px-4">
+    <IndicatorPageComponent />
+    <TableComponent :data="hoteles" :actions="actions" />
+  </section>
 </template>
