@@ -1,3 +1,8 @@
+<script setup>
+import HomeLayout from "../layouts/HomeLayout.vue";
+</script>
 <template>
-  <h1>Tipo de habitación</h1>
+  <HomeLayout>
+    <h1>Habitación</h1>
+  </HomeLayout>
 </template>

@@ -1,6 +1,5 @@
 <script setup>
 import ButtonComponent from "./ButtonComponent.vue";
-import { useRouter } from "vue-router";
 
 defineProps({
   classProp: {
@@ -19,17 +18,36 @@ defineProps({
     type: String,
     default: "Indicator label",
   },
+  svgIcon: {
+    type: String,
+    default: "icon",
+  },
+  buttonAction: {
+    type: Function,
+    default: () => {
+      console.log("Default action");
+    },
+  },
+  withButton: {
+    type: Boolean,
+    default: true,
+  },
 });
-
-const router = useRouter();
-const createHotel = () => {
-  router.push({ name: "CreateHotel" });
-};
 </script>
 <template>
   <section :class="classProp" class="my-4">
-    <h1>{{ currentPage }}</h1>
-    <ButtonComponent @click="createHotel" :class="buttonClass" :label="label" />
+    <div class="d-flex flex-row align-items-center indicator">
+      <div class="h-100 w-100">
+        <slot name="svgIcon"></slot>
+      </div>
+      <h1 class="mx-2">{{ currentPage }}</h1>
+    </div>
+    <ButtonComponent
+      v-if="withButton"
+      :class="buttonClass"
+      @click="buttonAction"
+      :label="label"
+    />
     <slot id="infoPage"></slot>
   </section>
 </template>

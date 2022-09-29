@@ -4,7 +4,9 @@ import BreadCrumbComponent from "../components/BreadCrumbComponent.vue";
 import TableComponent from "../components/TableComponent.vue";
 import axios from "../config/axios";
 import { useRouter } from "vue-router";
-import ButtonComponent from "../components/ButtonComponent.vue";
+import IndicatorPageComponent from "../components/IndicatorPageComponent.vue";
+import RoomIconVue from "../assets/icons/RoomIcon.vue";
+import HomeLayout from "../layouts/HomeLayout.vue";
 
 const router = useRouter();
 const rooms = ref([]);
@@ -47,18 +49,18 @@ const actions = [
     },
   },
 ];
-
-const createRoom = () => {
-  router.push({ name: "CreateRoom", params: { id } });
-};
 </script>
 <template>
-  <h1>Habitaciónes</h1>
-  <BreadCrumbComponent />
-  <ButtonComponent
-    @click="createRoom"
-    :class="'btn btn-success'"
-    :label="'Crear habitación'"
-  />
-  <TableComponent :columns="columns" :data="rooms" :actions="actions" />
+  <HomeLayout>
+    <BreadCrumbComponent />
+    <IndicatorPageComponent
+      :currentPage="'Habitaciones'"
+      :label="'Crear Habitación'"
+    >
+      <template #svgIcon>
+        <RoomIconVue />
+      </template>
+    </IndicatorPageComponent>
+    <TableComponent :columns="columns" :data="rooms" :actions="actions" />
+  </HomeLayout>
 </template>

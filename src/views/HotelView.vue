@@ -4,6 +4,9 @@ import { useRouter } from "vue-router";
 import axios from "../config/axios";
 import TableComponent from "../components/TableComponent.vue";
 import IndicatorPageComponent from "../components/IndicatorPageComponent.vue";
+import HotelSVG from "../assets/icons/HotelIcon.vue";
+import HomeLayout from "../layouts/HomeLayout.vue";
+
 const router = useRouter();
 
 const hoteles = ref([]);
@@ -30,8 +33,12 @@ onMounted(async () => {
 });
 </script>
 <template>
-  <section class="px-4">
-    <IndicatorPageComponent />
+  <HomeLayout>
+    <IndicatorPageComponent :currentPage="'Hoteles'" :label="'Crear Hotel'" >
+      <template #svgIcon>
+        <HotelSVG />
+      </template>
+    </IndicatorPageComponent>
     <TableComponent :data="hoteles" :actions="actions" />
-  </section>
+  </HomeLayout>
 </template>
