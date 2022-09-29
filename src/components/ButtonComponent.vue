@@ -4,10 +4,14 @@ defineProps({
     type: String,
     default: "btn btn-primary",
   },
+  label: {
+    type: String,
+    default: "Default Label",
+  },
 });
 </script>
 <template>
   <button :class="classProp">
-    <slot id="text" />
+    {{ label }}
   </button>
 </template>
