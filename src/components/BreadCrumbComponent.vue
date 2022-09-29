@@ -8,7 +8,12 @@ const breadcrumbs = computed(() => {
   return meta?.breadcrumb?.split("-");
 });
 
+const breadCrumbName = computed(() => {
+  return meta?.breadcrumbName.split("-");
+});
+
 const navigate = (path) => {
+  console.log(path);
   router.push({
     name: path,
   });
@@ -35,8 +40,10 @@ const navigate = (path) => {
         <a
           v-else
           href="#"
-          @click.prevent="navigate(breadcrumb)"
-          >{{ breadcrumb }}</a
+          @click.prevent="navigate(breadCrumbName[index])"
+          class="pointer"
+        >
+          {{ breadcrumb }}</a
         >
       </li>
     </ol>
