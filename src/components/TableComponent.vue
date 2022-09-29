@@ -81,9 +81,11 @@ defineProps({
             {{ row[column.field].name || row[column.field] }}
           </td>
           <td v-for="action in actions" :key="action.label" class="option">
-            <ButtonComponent :class="action.class" @click="action.action(row)">
-              {{ action.label }}
-            </ButtonComponent>
+            <ButtonComponent
+              :class="action.class"
+              @click="action.action(row)"
+              :label="action.label"
+            />
           </td>
         </tr>
       </tbody>
