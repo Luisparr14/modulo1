@@ -40,7 +40,10 @@ defineProps({
       <div>
         <slot name="svgIcon"></slot>
       </div>
-      <h1 class="mx-2">{{ currentPage }}</h1>
+      <div>
+        <h1 class="mx-2 my-0">{{ currentPage }}</h1>
+        <slot name="info"></slot>
+      </div>
     </div>
     <ButtonComponent
       v-if="withButton"
