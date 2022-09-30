@@ -1,7 +1,6 @@
 <script setup>
-import { computed } from "vue";
+import { computed, onMounted } from "vue";
 import { reactive } from "vue";
-
 const form = reactive({});
 const emit = defineEmits(["submit"]);
 const props = defineProps({
@@ -32,8 +31,8 @@ const props = defineProps({
       {
         label: "Numero de habitaciones",
         type: "number",
-        name: "rooms",
-        id: "rooms",
+        name: "num_rooms",
+        id: "num_rooms",
         placeholder: "Numero de habitaciones",
       },
       {
@@ -41,9 +40,10 @@ const props = defineProps({
         type: "select",
         options: [
           { value: "", label: "Seleccione una ciudad" },
-          { value: "Bogota", label: "Bogota" },
-          { value: "Medellin", label: "Medellin" },
-          { value: "Cali", label: "Cali" },
+          { value: "1", label: "Monteria" },
+          { value: "3", label: "Medellin" },
+          { value: "3", label: "Cali" },
+          { value: "4", label: "Bogota" },
         ],
         name: "city",
         id: "city",
@@ -54,6 +54,10 @@ const props = defineProps({
   buttonText: {
     type: String,
     default: "Crear",
+  },
+  moreThanOneButton: {
+    type: Boolean,
+    default: false,
   },
 });
 
@@ -67,15 +71,23 @@ const fieldsComp = computed(() => {
 });
 
 const selectComp = computed(() => {
-  return props.fields.find((field) => field.type === "select");
+  return props.fields.filter((field) => field.type === "select");
 });
 
 const handleSubmit = () => {
   emit("submit", form);
 };
+
+onMounted(async () => {
+  setTimeout(() => {
+    props.fields.forEach((field) => {
+      form[field.name] = field.value;
+    });
+  }, 1000);
+});
 </script>
 <template>
-  <form class="row g-3" @submit.prevent="handleSubmit">
+  <form class="row g-3 px-5" @submit.prevent="handleSubmit">
     <div v-for="field in fieldsComp" :key="field.id" class="col-md-6">
       <label :for="field.id" class="my-1">{{ field.label }}</label>
       <input
@@ -83,22 +95,21 @@ const handleSubmit = () => {
         class="form-control"
         :id="field.id"
         :name="field.name"
-        :placeholder="field.placeholder"
-        :value="form[field.name]"
+        :value="field.value"
         @change="handleChange"
       />
     </div>
-    <div v-if="selectComp" class="col-md-6">
-      <label :for="selectComp.id" class="my-1">{{ selectComp.label }}</label>
+    <div v-for="select in selectComp" :key="select.id" class="col-md-6">
+      <label :for="select.id" class="my-1">{{ select.label }}</label>
       <select
         class="form-select"
-        :id="selectComp.id"
-        :name="selectComp.name"
-        :placeholder="selectComp.placeholder"
+        :id="select.id"
+        :name="select.name"
         @change="handleChange"
+        :value="select.value"
       >
         <option
-          v-for="option in selectComp.options"
+          v-for="option in select.options"
           :key="option.value"
           :value="option.value"
         >
@@ -107,7 +118,13 @@ const handleSubmit = () => {
       </select>
     </div>
     <div>
-      <div class="col-12 justify-content-center d-flex">
+      <div
+        class="col-12 d-flex"
+        :class="
+          moreThanOneButton ? 'justify-content-between' : 'justify-content-end'
+        "
+      >
+        <slot name="aditionalButton"></slot>
         <button type="submit" class="btn btn-primary mb-3">
           {{ buttonText }}
         </button>
