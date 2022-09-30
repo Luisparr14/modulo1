@@ -1,7 +1,7 @@
 <script setup>
-import { ref, onMounted } from "vue";
+import { onMounted, reactive } from "vue";
 import { useRouter } from "vue-router";
-import axios from "../config/axios";
+import { getHotels } from "../data/hotels";
 import TableComponent from "../components/TableComponent.vue";
 import IndicatorPageComponent from "../components/IndicatorPageComponent.vue";
 import HotelSVG from "../assets/icons/HotelIcon.vue";
@@ -9,7 +9,9 @@ import HomeLayout from "../layouts/HomeLayout.vue";
 
 const router = useRouter();
 
-const hoteles = ref([]);
+const state = reactive({
+  hotels: [],
+});
 
 const actions = [
   {
@@ -33,8 +35,8 @@ const createHotel = () => {
 };
 
 onMounted(async () => {
-  const { data } = await axios.get("/hotels");
-  hoteles.value = data.data;
+  const { data: hotels } = await getHotels();
+  state.hotels = hotels;
 });
 </script>
 <template>
@@ -48,6 +50,6 @@ onMounted(async () => {
         <HotelSVG />
       </template>
     </IndicatorPageComponent>
-    <TableComponent :data="hoteles" :actions="actions" />
+    <TableComponent :data="state.hotels" :actions="actions" />
   </HomeLayout>
 </template>

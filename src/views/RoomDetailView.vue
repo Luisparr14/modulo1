@@ -1,10 +1,83 @@
 <script setup>
-import BreadCrumbComponent from "../components/BreadCrumbComponent.vue";
 import HomeLayout from "../layouts/HomeLayout.vue";
+import IndicatorPageComponent from "../components/IndicatorPageComponent.vue";
+import HotelIconVue from "../assets/icons/HotelIcon.vue";
+import BreadCrumbComponent from "../components/BreadCrumbComponent.vue";
+import FormComponent from "../components/FormComponent.vue";
+import { onMounted, ref, computed, reactive } from "vue";
+import { useRouter } from "vue-router";
+import { getRoom, getRoomTypes } from "../data/rooms";
+import { getAccommodationsTypes } from "../data/accommodation";
+
+const router = useRouter();
+const { id } = router.currentRoute.value.params;
+const fields = ref([]);
+const state = reactive({});
+
+const currentPage = computed(() => {
+  return state?.infoRoom?.hotel?.name;
+});
+
+onMounted(async () => {
+  const { data: info } = await getRoom(id);
+  const accommodationsTypes = await getAccommodationsTypes();
+  const roomTypes = await getRoomTypes();
+  state.infoRoom = info;
+  fields.value = [
+    {
+      label: "Tipo de habitación",
+      type: "select",
+      options: roomTypes.map((roomType) => ({
+        value: roomType.id,
+        label: roomType.name,
+      })),
+      name: "type",
+      id: "type",
+      value: state.infoRoom.type.id,
+    },
+    {
+      label: "Acomodación",
+      type: "select",
+      options: accommodationsTypes.map((item) => ({
+        value: item.id,
+        label: item.name,
+      })),
+      name: "accommodation",
+      id: "accommodation",
+      value: state.infoRoom.accommodation.id,
+    },
+    {
+      label: "Cantidad",
+      type: "number",
+      name: "quantity",
+      id: "quantity",
+      value: state.infoRoom.quantity,
+    },
+  ];
+});
+
+const onSubmit = async (form) => {
+  console.log(form);
+};
 </script>
 <template>
   <HomeLayout>
-    <h1>Habitación</h1>
     <BreadCrumbComponent />
+    <IndicatorPageComponent :currentPage="currentPage" :with-button="false">
+      <template #svgIcon>
+        <HotelIconVue />
+      </template>
+      <template #info>
+        <small class="px-2 fs-6">
+          <span class="fw-normal">Numero de habitaciones: </span>
+          {{ state?.infoRoom?.quantity }}
+        </small>
+      </template>
+    </IndicatorPageComponent>
+    <FormComponent
+      :fields="fields"
+      :onSubmit="onSubmit"
+      :button-text="'Actualizar Datos'"
+    />
   </HomeLayout>
 </template>
