@@ -27,6 +27,11 @@ const actions = [
     },
   },
 ];
+
+const createHotel = () => {
+  router.push({ name: "CreateHotel" });
+};
+
 onMounted(async () => {
   const { data } = await axios.get("/hotels");
   hoteles.value = data.data;
@@ -34,7 +39,11 @@ onMounted(async () => {
 </script>
 <template>
   <HomeLayout>
-    <IndicatorPageComponent :currentPage="'Hoteles'" :label="'Crear Hotel'" >
+    <IndicatorPageComponent
+      :button-action="createHotel"
+      :currentPage="'Hoteles'"
+      :label="'Crear Hotel'"
+    >
       <template #svgIcon>
         <HotelSVG />
       </template>

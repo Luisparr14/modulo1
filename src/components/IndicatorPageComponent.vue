@@ -37,7 +37,7 @@ defineProps({
 <template>
   <section :class="classProp" class="my-4">
     <div class="d-flex flex-row align-items-center indicator">
-      <div class="h-100 w-100">
+      <div>
         <slot name="svgIcon"></slot>
       </div>
       <h1 class="mx-2">{{ currentPage }}</h1>

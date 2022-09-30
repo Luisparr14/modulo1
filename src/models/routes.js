@@ -23,7 +23,11 @@ export default [
       {
         path: "crear",
         name: "CreateHotel",
-        // component: () => import("../views/HotelCreateView.vue"),
+        meta: {
+          breadcrumb: "Inicio-Hoteles-Crear",
+          breadcrumbName: "Index-Hotels",
+        },
+        component: () => import("../views/HotelCreateView.vue"),
       },
       {
         path: ":id",
