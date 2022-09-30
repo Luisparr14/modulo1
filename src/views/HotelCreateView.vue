@@ -5,7 +5,7 @@ import HotelIconVue from "../assets/icons/HotelIcon.vue";
 import BreadCrumbComponent from "../components/BreadCrumbComponent.vue";
 import FormComponent from "../components/FormComponent.vue";
 import { onMounted, ref } from "vue";
-import { getCities } from "../data/cities";
+import { getCities } from "../services/cities";
 const cities = ref([]);
 const fields = ref([
   {

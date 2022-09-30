@@ -6,8 +6,8 @@ import BreadCrumbComponent from "../components/BreadCrumbComponent.vue";
 import FormComponent from "../components/FormComponent.vue";
 import { onMounted, reactive, ref } from "vue";
 import { useRouter } from "vue-router";
-import { getHotel } from "../data/hotels";
-import { getCities } from "../data/cities";
+import { getHotel } from "../services/hotels";
+import { getCities } from "../services/cities";
 
 const router = useRouter();
 const { id } = router.currentRoute.value.params;

@@ -1,7 +1,7 @@
 <script setup>
 import { onMounted, reactive } from "vue";
 import { useRouter } from "vue-router";
-import { getHotels } from "../data/hotels";
+import { getHotels } from "../services/hotels";
 import TableComponent from "../components/TableComponent.vue";
 import IndicatorPageComponent from "../components/IndicatorPageComponent.vue";
 import HotelSVG from "../assets/icons/HotelIcon.vue";
