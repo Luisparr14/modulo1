@@ -66,7 +66,7 @@ export default [
             meta: {
               breadcrumb:
                 "Inicio-Hoteles-Habitaciones-Actualizar Datos de Habitación",
-              breadcrumbName: "Index-Hotels-Rooms",
+              breadcrumbName: "Index-Hotels-HotelRooms",
             },
             component: () => import("../views/RoomDetailView.vue"),
           },
