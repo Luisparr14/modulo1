@@ -24,7 +24,7 @@ export default [
         path: "crear",
         name: "CreateHotel",
         meta: {
-          breadcrumb: "Inicio-Hoteles-Crear",
+          breadcrumb: "Inicio-Hoteles-Crear nuevo hotel",
           breadcrumbName: "Index-Hotels",
         },
         component: () => import("../views/HotelCreateView.vue"),
@@ -55,7 +55,7 @@ export default [
             path: "crear",
             name: "CreateRoom",
             meta: {
-              breadcrumb: "Inicio-Hoteles-Habitaciones-Crear Habitación",
+              breadcrumb: "Inicio-Hoteles-Habitación-Crear Habitación",
               breadcrumbName: "Index-Hotels-Rooms",
             },
             // component: () => import("../views/RoomCreateView.vue"),
@@ -65,7 +65,7 @@ export default [
             name: "RoomDetail",
             meta: {
               breadcrumb:
-                "Inicio-Hoteles-Habitaciones-Actualizar Datos de Habitación",
+                "Inicio-Hoteles-Habitación-Actualizar Datos de Habitación",
               breadcrumbName: "Index-Hotels-HotelRooms",
             },
             component: () => import("../views/RoomDetailView.vue"),
