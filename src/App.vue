@@ -1,9 +1,15 @@
 <script setup>
 import { RouterView } from "vue-router";
-import NavBarComponent from "./components/NavBarComponent.vue";
+import NavSideComponent from "./components/NavSideComponent.vue";
 </script>
 
 <template>
-  <NavBarComponent />
-  <RouterView />
+  <div
+    class="wrapper sidebar-mini sidebar-closed sidebar-collapse control-sidebar-slide-open sidebar-mini-xs layout-fixed overflow-hidden"
+  >
+    <NavSideComponent />
+    <div class="content-wrapper">
+      <RouterView />
+    </div>
+  </div>
 </template>

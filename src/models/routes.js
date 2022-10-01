@@ -2,6 +2,7 @@ export default [
   {
     path: "/",
     name: "Inicio",
+    icon: "fas fa-home",
     children: [
       {
         path: "",
@@ -14,6 +15,7 @@ export default [
   {
     path: "/hoteles/",
     name: "Hoteles",
+    icon: "fas fa-hotel",
     children: [
       {
         path: "",
@@ -77,11 +79,13 @@ export default [
   {
     path: "/tipo-habitaciones",
     name: "Tipo de habitaciones",
+    icon: "fas fa-duotone fa-layer-group",
     component: () => import("../views/RoomTypeView.vue"),
   },
   {
     path: "/acomodaciones",
     name: "Acomodaciones",
+    icon: "fas fa-bed",
     component: () => import("../views/AccommodationView.vue"),
   },
 ];

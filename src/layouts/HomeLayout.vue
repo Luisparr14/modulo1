@@ -1,5 +1,5 @@
 <template>
-  <section class="px-5">
+  <section class="px-2">
     <slot></slot>
   </section>
 </template>

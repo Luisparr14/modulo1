@@ -88,7 +88,7 @@ onMounted(async () => {
 </script>
 <template>
   <form class="row g-3 px-5" @submit.prevent="handleSubmit">
-    <div v-for="field in fieldsComp" :key="field.id" class="col-md-6">
+    <div v-for="field in fieldsComp" :key="field.id" class="col-md-6 mb-2">
       <label :for="field.id" class="my-1">{{ field.label }}</label>
       <input
         :type="field.type"
@@ -102,7 +102,7 @@ onMounted(async () => {
     <div v-for="select in selectComp" :key="select.id" class="col-md-6">
       <label :for="select.id" class="my-1">{{ select.label }}</label>
       <select
-        class="form-select"
+        class="form-control"
         :id="select.id"
         :name="select.name"
         @change="handleChange"
@@ -117,9 +117,9 @@ onMounted(async () => {
         </option>
       </select>
     </div>
-    <div>
+    <div class="col-12 mt-4">
       <div
-        class="col-12 d-flex"
+        class="d-flex gap-2 justify-content-end"
         :class="
           moreThanOneButton ? 'justify-content-between' : 'justify-content-end'
         "
@@ -132,3 +132,9 @@ onMounted(async () => {
     </div>
   </form>
 </template>
+
+<style scoped>
+button {
+  margin: 0 5px;
+}
+</style>

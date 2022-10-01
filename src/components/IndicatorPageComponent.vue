@@ -35,7 +35,7 @@ defineProps({
 });
 </script>
 <template>
-  <section :class="classProp" class="my-4">
+  <section :class="classProp" class="pb-4 pt-2">
     <div class="d-flex flex-row align-items-center indicator">
       <div>
         <slot name="svgIcon"></slot>
@@ -48,6 +48,7 @@ defineProps({
     <ButtonComponent
       v-if="withButton"
       :class="buttonClass"
+      class="my-3"
       @click="buttonAction"
       :label="label"
     />

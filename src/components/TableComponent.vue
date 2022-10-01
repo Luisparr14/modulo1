@@ -66,8 +66,8 @@ defineProps({
 });
 </script>
 <template>
-  <div class="card-body table-responsive">
-    <table class="table table-sm align-middle">
+  <div class="card-body table-responsive elevation-2">
+    <table class="table table-hover text-nowrap">
       <thead>
         <tr>
           <th v-for="column in columns" :key="column.label">
@@ -87,6 +87,9 @@ defineProps({
               :label="action.label"
             />
           </td>
+        </tr>
+        <tr v-if="data.length === 0">
+          <td colspan="5" class="text-center">No hay datos para mostrar</td>
         </tr>
       </tbody>
     </table>
