@@ -57,17 +57,17 @@ export default [
             path: "crear",
             name: "CreateRoom",
             meta: {
-              breadcrumb: "Inicio-Hoteles-Habitación-Crear Habitación",
-              breadcrumbName: "Index-Hotels-Rooms",
+              breadcrumb: "Inicio-Hoteles-Habitaciones-Crear Habitación",
+              breadcrumbName: "Index-Hotels-HotelRooms",
             },
-            // component: () => import("../views/RoomCreateView.vue"),
+            component: () => import("../views/RoomCreateView.vue"),
           },
           {
             path: "editar/:id",
             name: "RoomDetail",
             meta: {
               breadcrumb:
-                "Inicio-Hoteles-Habitación-Actualizar Datos de Habitación",
+                "Inicio-Hoteles-Habitaciones-Actualizar Datos de Habitación",
               breadcrumbName: "Index-Hotels-HotelRooms",
             },
             component: () => import("../views/RoomDetailView.vue"),
