@@ -78,7 +78,7 @@ onMounted(async () => {
     props.fields.forEach((field) => {
       form[field.name] = field.value;
     });
-  }, 1000);
+  }, 1500);
 });
 </script>
 <template>
