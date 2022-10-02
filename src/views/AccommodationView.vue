@@ -1,10 +1,10 @@
 <script setup>
 import { onMounted, reactive } from "vue";
-import HomeLayout from "../layouts/HomeLayout.vue";
-import TableComponent from "../components/TableComponent.vue";
-import { getAccommodationsTypes } from "../services/accommodation";
-import IndicatorPageComponent from "../components/IndicatorPageComponent.vue";
-import AlojamientoIcon from "../assets/icons/AlojamientoIcon.vue";
+import HomeLayout from "@/layouts/HomeLayout.vue";
+import TableComponent from "@/components/TableComponent.vue";
+import { getAccommodationsTypes } from "@/services/accommodation";
+import IndicatorPageComponent from "@/components/IndicatorPageComponent.vue";
+import AlojamientoIcon from "@/assets/icons/AlojamientoIcon.vue";
 
 const columns = [
   {

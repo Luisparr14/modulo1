@@ -1,12 +1,12 @@
 <script setup>
 import { inject, onMounted, ref } from "vue";
-import BreadCrumbComponent from "../components/BreadCrumbComponent.vue";
-import TableComponent from "../components/TableComponent.vue";
-import { getRooms, deleteRoom } from "../services/rooms";
+import BreadCrumbComponent from "@/components/BreadCrumbComponent.vue";
+import TableComponent from "@/components/TableComponent.vue";
+import { getRooms, deleteRoom } from "@/services/rooms";
 import { useRouter } from "vue-router";
-import IndicatorPageComponent from "../components/IndicatorPageComponent.vue";
-import RoomIconVue from "../assets/icons/RoomIcon.vue";
-import HomeLayout from "../layouts/HomeLayout.vue";
+import IndicatorPageComponent from "@/components/IndicatorPageComponent.vue";
+import RoomIconVue from "@/assets/icons/RoomIcon.vue";
+import HomeLayout from "@/layouts/HomeLayout.vue";
 
 const router = useRouter();
 const { id } = router.currentRoute.value.params;

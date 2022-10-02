@@ -1,13 +1,13 @@
 <script setup>
-import HomeLayout from "../layouts/HomeLayout.vue";
-import IndicatorPageComponent from "../components/IndicatorPageComponent.vue";
-import HotelIconVue from "../assets/icons/HotelIcon.vue";
-import BreadCrumbComponent from "../components/BreadCrumbComponent.vue";
-import FormComponent from "../components/FormComponent.vue";
+import HomeLayout from "@/layouts/HomeLayout.vue";
+import IndicatorPageComponent from "@/components/IndicatorPageComponent.vue";
+import HotelIconVue from "@/assets/icons/HotelIcon.vue";
+import BreadCrumbComponent from "@/components/BreadCrumbComponent.vue";
+import FormComponent from "@/components/FormComponent.vue";
 import { inject, onMounted, reactive, ref } from "vue";
 import { useRouter } from "vue-router";
-import { getHotel, deleteHotel, updateHotel } from "../services/hotels";
-import { getCities } from "../services/cities";
+import { getHotel, deleteHotel, updateHotel } from "@/services/hotels";
+import { getCities } from "@/services/cities";
 
 const router = useRouter();
 const { id } = router.currentRoute.value.params;

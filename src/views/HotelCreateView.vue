@@ -1,12 +1,12 @@
 <script setup>
-import HomeLayout from "../layouts/HomeLayout.vue";
-import IndicatorPageComponent from "../components/IndicatorPageComponent.vue";
-import HotelIconVue from "../assets/icons/HotelIcon.vue";
-import BreadCrumbComponent from "../components/BreadCrumbComponent.vue";
-import FormComponent from "../components/FormComponent.vue";
+import HomeLayout from "@/layouts/HomeLayout.vue";
+import IndicatorPageComponent from "@/components/IndicatorPageComponent.vue";
+import HotelIconVue from "@/assets/icons/HotelIcon.vue";
+import BreadCrumbComponent from "@/components/BreadCrumbComponent.vue";
+import FormComponent from "@/components/FormComponent.vue";
 import { inject, onMounted, ref } from "vue";
-import { getCities } from "../services/cities";
-import { createHotel } from "../services/hotels";
+import { getCities } from "@/services/cities";
+import { createHotel } from "@/services/hotels";
 import { useRouter } from "vue-router";
 
 const router = useRouter();

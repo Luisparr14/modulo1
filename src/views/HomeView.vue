@@ -1,6 +1,6 @@
 <script setup>
-import BreadCrumbComponent from "../components/BreadCrumbComponent.vue";
-import HomeLayout from "../layouts/HomeLayout.vue";
+import BreadCrumbComponent from "@/components/BreadCrumbComponent.vue";
+import HomeLayout from "@/layouts/HomeLayout.vue";
 </script>
 
 <template>

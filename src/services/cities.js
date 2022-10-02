@@ -1,4 +1,4 @@
-import axios from "../config/axios";
+import axios from "@/config/axios";
 
 export const getCities = async () => {
   const { data: citiesData } = await axios.get("/cities");

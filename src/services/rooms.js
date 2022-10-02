@@ -1,4 +1,4 @@
-import axios from "../config/axios";
+import axios from "@/config/axios";
 
 export const getRooms = async (hotelId) => {
   const { data: roomsData } = await axios.get(`/rooms/${hotelId}`);

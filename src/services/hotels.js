@@ -1,4 +1,4 @@
-import axios from "../config/axios";
+import axios from "@/config/axios";
 
 export const getHotels = async () => {
   const { data: hotelsData } = await axios.get("/hotels");

@@ -1,10 +1,10 @@
 <script setup>
 import { onMounted, reactive } from "vue";
-import HomeLayout from "../layouts/HomeLayout.vue";
-import TableComponent from "../components/TableComponent.vue";
-import { getRoomTypes } from "../services/rooms";
-import IndicatorPageComponent from "../components/IndicatorPageComponent.vue";
-import RoomTypeIcon from "../assets/icons/RoomTypeIcon.vue";
+import HomeLayout from "@/layouts/HomeLayout.vue";
+import TableComponent from "@/components/TableComponent.vue";
+import { getRoomTypes } from "@/services/rooms";
+import IndicatorPageComponent from "@/components/IndicatorPageComponent.vue";
+import RoomTypeIcon from "@/assets/icons/RoomTypeIcon.vue";
 
 const columns = [
   {

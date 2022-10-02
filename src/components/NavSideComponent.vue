@@ -1,5 +1,5 @@
 <script setup>
-import items from "../models/routes.js";
+import items from "@/models/routes.js";
 </script>
 <template>
   <aside class="main-sidebar sidebar-dark-primary elevation-4">

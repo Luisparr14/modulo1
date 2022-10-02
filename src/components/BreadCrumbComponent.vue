@@ -1,7 +1,7 @@
 <script setup>
 import { computed, onMounted, reactive } from "vue";
 import { useRouter } from "vue-router";
-import { getRoom } from "../services/rooms";
+import { getRoom } from "@/services/rooms";
 
 const router = useRouter();
 const state = reactive({

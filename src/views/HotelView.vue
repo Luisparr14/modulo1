@@ -1,11 +1,11 @@
 <script setup>
 import { onMounted, reactive } from "vue";
 import { useRouter } from "vue-router";
-import { getHotels } from "../services/hotels";
-import TableComponent from "../components/TableComponent.vue";
-import IndicatorPageComponent from "../components/IndicatorPageComponent.vue";
-import HotelSVG from "../assets/icons/HotelIcon.vue";
-import HomeLayout from "../layouts/HomeLayout.vue";
+import { getHotels } from "@/services/hotels";
+import TableComponent from "@/components/TableComponent.vue";
+import IndicatorPageComponent from "@/components/IndicatorPageComponent.vue";
+import HotelSVG from "@/assets/icons/HotelIcon.vue";
+import HomeLayout from "@/layouts/HomeLayout.vue";
 
 const router = useRouter();
 

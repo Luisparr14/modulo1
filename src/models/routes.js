@@ -8,7 +8,7 @@ export default [
         path: "",
         name: "Index",
         breadcrumb: "Inicio-Hoteles-Actualizar datos",
-        component: () => import("../views/HomeView.vue"),
+        component: () => import("@/views/HomeView.vue"),
       },
     ],
   },
@@ -20,7 +20,7 @@ export default [
       {
         path: "",
         name: "Hotels",
-        component: () => import("../views/HotelView.vue"),
+        component: () => import("@/views/HotelView.vue"),
       },
       {
         path: "crear",
@@ -29,7 +29,7 @@ export default [
           breadcrumb: "Inicio-Hoteles-Crear nuevo hotel",
           breadcrumbName: "Index-Hotels",
         },
-        component: () => import("../views/HotelCreateView.vue"),
+        component: () => import("@/views/HotelCreateView.vue"),
       },
       {
         path: ":id",
@@ -39,7 +39,7 @@ export default [
           breadcrumb: "Inicio-Hoteles-Actualizar Datos de Hotel",
           breadcrumbName: "Index-Hotels",
         },
-        component: () => import("../views/HotelDetailView.vue"),
+        component: () => import("@/views/HotelDetailView.vue"),
       },
       {
         path: "habitaciones/",
@@ -51,7 +51,7 @@ export default [
               breadcrumb: "Inicio-Hoteles-Habitaciones",
               breadcrumbName: "Index-Hotels",
             },
-            component: () => import("../views/RoomsView.vue"),
+            component: () => import("@/views/RoomsView.vue"),
           },
           {
             path: "crear",
@@ -60,7 +60,7 @@ export default [
               breadcrumb: "Inicio-Hoteles-Habitaciones-Crear Habitación",
               breadcrumbName: "Index-Hotels-HotelRooms",
             },
-            component: () => import("../views/RoomCreateView.vue"),
+            component: () => import("@/views/RoomCreateView.vue"),
           },
           {
             path: "editar/:id",
@@ -70,7 +70,7 @@ export default [
                 "Inicio-Hoteles-Habitaciones-Actualizar Datos de Habitación",
               breadcrumbName: "Index-Hotels-HotelRooms",
             },
-            component: () => import("../views/RoomDetailView.vue"),
+            component: () => import("@/views/RoomDetailView.vue"),
           },
         ],
       },
@@ -80,12 +80,12 @@ export default [
     path: "/tipo-habitaciones",
     name: "Tipo de habitaciones",
     icon: "fas fa-duotone fa-layer-group",
-    component: () => import("../views/RoomTypeView.vue"),
+    component: () => import("@/views/RoomTypeView.vue"),
   },
   {
     path: "/acomodaciones",
     name: "Acomodaciones",
     icon: "fas fa-bed",
-    component: () => import("../views/AccommodationView.vue"),
+    component: () => import("@/views/AccommodationView.vue"),
   },
 ];

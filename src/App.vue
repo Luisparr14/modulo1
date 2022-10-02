@@ -1,6 +1,6 @@
 <script setup>
 import { RouterView } from "vue-router";
-import NavSideComponent from "./components/NavSideComponent.vue";
+import NavSideComponent from "@/components/NavSideComponent.vue";
 </script>
 
 <template>
