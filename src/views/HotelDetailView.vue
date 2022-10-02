@@ -4,15 +4,16 @@ import IndicatorPageComponent from "../components/IndicatorPageComponent.vue";
 import HotelIconVue from "../assets/icons/HotelIcon.vue";
 import BreadCrumbComponent from "../components/BreadCrumbComponent.vue";
 import FormComponent from "../components/FormComponent.vue";
-import { onMounted, reactive, ref } from "vue";
+import { inject, onMounted, reactive, ref } from "vue";
 import { useRouter } from "vue-router";
-import { getHotel } from "../services/hotels";
+import { getHotel, deleteHotel, updateHotel } from "../services/hotels";
 import { getCities } from "../services/cities";
 
 const router = useRouter();
 const { id } = router.currentRoute.value.params;
 const fields = ref([]);
 const state = reactive({});
+const swal = inject("$swal");
 
 onMounted(async () => {
   const { data: hotelData } = await getHotel(id);
@@ -51,7 +52,7 @@ onMounted(async () => {
       label: "Ciudad",
       type: "select",
       options: [],
-      name: "city",
+      name: "city_id",
       id: hotelData.city.id,
       value: hotelData.city.id,
     },
@@ -62,12 +63,52 @@ onMounted(async () => {
   }));
 });
 
-const onSubmit = async (form) => {
-  console.log("Submit", form);
+const handleUpdateHotel = async (form) => {
+  try {
+    const { success, message } = await updateHotel(id, form);
+    if (success) {
+      swal
+        .fire({
+          title: "¡Genial!",
+          text: message,
+          icon: "success",
+          confirmButtonText: "Aceptar",
+        })
+        .then(() => {
+          router.push("/hoteles");
+        });
+    }
+  } catch (error) {
+    swal.fire({
+      title: "¡Error!",
+      text: "Ha ocurrido un error inesperado",
+      icon: "error",
+      confirmButtonText: "Aceptar",
+    });
+  }
 };
 
-const deleteHotel = async () => {
-  alert(`Hotel ${state.infoHotel.name} listo para ser eliminado`);
+const handleDeleteHotel = async () => {
+  const { success, message } = await deleteHotel(id);
+  if (success) {
+    swal
+      .fire({
+        title: "¡Genial!",
+        text: message,
+        icon: "success",
+        confirmButtonText: "Aceptar",
+      })
+      .then(() => {
+        router.push("/hoteles");
+      });
+  } else {
+    swal.fire({
+      title: "¡Error!",
+      text: message,
+      icon: "error",
+      confirmButtonText: "Aceptar",
+    });
+  }
 };
 </script>
 <template>
@@ -80,12 +121,16 @@ const deleteHotel = async () => {
     </IndicatorPageComponent>
     <FormComponent
       :fields="fields"
-      :onSubmit="onSubmit"
+      :onSubmit="handleUpdateHotel"
       :button-text="'Actualizar Datos'"
       :more-than-one-button="true"
     >
       <template #aditionalButton>
-        <button type="button" @click="deleteHotel" class="btn btn-danger mb-3">
+        <button
+          type="button"
+          @click="handleDeleteHotel"
+          class="btn btn-danger mb-3"
+        >
           Eliminar hotel
         </button>
       </template>
