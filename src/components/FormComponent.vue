@@ -61,11 +61,6 @@ const props = defineProps({
   },
 });
 
-const handleChange = (e) => {
-  const { name, value } = e.target;
-  form[name] = value;
-};
-
 const fieldsComp = computed(() => {
   return props.fields.filter((field) => field.type !== "select");
 });
@@ -95,8 +90,7 @@ onMounted(async () => {
         class="form-control"
         :id="field.id"
         :name="field.name"
-        :value="field.value"
-        @change="handleChange"
+        v-model="form[field.name]"
       />
     </div>
     <div v-for="select in selectComp" :key="select.id" class="col-md-6">
@@ -105,8 +99,7 @@ onMounted(async () => {
         class="form-control"
         :id="select.id"
         :name="select.name"
-        @change="handleChange"
-        :value="select.value"
+        v-model="form[select.name]"
       >
         <option
           v-for="option in select.options"
