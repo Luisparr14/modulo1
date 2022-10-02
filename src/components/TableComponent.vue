@@ -63,6 +63,10 @@ defineProps({
       },
     ],
   },
+  withActions: {
+    type: Boolean,
+    default: true,
+  },
 });
 </script>
 <template>
@@ -80,13 +84,15 @@ defineProps({
           <td v-for="column in columns" :key="column.label">
             {{ row[column.field].name || row[column.field] }}
           </td>
-          <td v-for="action in actions" :key="action.label" class="option">
-            <ButtonComponent
-              :class="action.class"
-              @click="action.action(row)"
-              :label="action.label"
-            />
-          </td>
+          <template v-if="withActions">
+            <td v-for="action in actions" :key="action.label" class="option">
+              <ButtonComponent
+                :class="action.class"
+                @click="action.action(row)"
+                :label="action.label"
+              />
+            </td>
+          </template>
         </tr>
         <tr v-if="data.length === 0">
           <td colspan="5" class="text-center">No hay datos para mostrar</td>
