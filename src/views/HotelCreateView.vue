@@ -4,8 +4,12 @@ import IndicatorPageComponent from "../components/IndicatorPageComponent.vue";
 import HotelIconVue from "../assets/icons/HotelIcon.vue";
 import BreadCrumbComponent from "../components/BreadCrumbComponent.vue";
 import FormComponent from "../components/FormComponent.vue";
-import { onMounted, ref } from "vue";
+import { inject, onMounted, ref } from "vue";
 import { getCities } from "../services/cities";
+import { createHotel } from "../services/hotels";
+import { useRouter } from "vue-router";
+
+const router = useRouter();
 const cities = ref([]);
 const fields = ref([
   {
@@ -40,15 +44,47 @@ const fields = ref([
     label: "Ciudad",
     type: "select",
     options: [],
-    name: "city",
+    name: "city_id",
     id: "city",
     placeholder: "Ciudad del hotel",
   },
 ]);
+const swal = inject("$swal");
 
 const onSubmit = async (form) => {
-  console.log(form);
+  try {
+    const { success, message } = await createHotel(form);
+    if (success) {
+      swal
+        .fire({
+          title: "¡Genial!",
+          text: message,
+          icon: "success",
+          confirmButtonText: "Volver",
+          showCancelButton: true,
+          cancelButtonText: "Crear otro",
+        })
+        .then((result) => {
+          if (result.isConfirmed) {
+            router.push("/hoteles");
+          }
+
+          if (result.isDismissed) {
+            form = {};
+          }
+        });
+    }
+  } catch (error) {
+    const { errors } = error.response.data;
+    const { name } = errors;
+    swal.fire({
+      title: "Error",
+      text: name[0],
+      icon: "error",
+    });
+  }
 };
+
 onMounted(async () => {
   cities.value = await getCities();
   fields.value[4].options = cities.value.map((city) => ({
