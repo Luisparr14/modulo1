@@ -1,21 +1,25 @@
 <script setup>
-import { onMounted, ref } from "vue";
+import { inject, onMounted, ref } from "vue";
 import BreadCrumbComponent from "../components/BreadCrumbComponent.vue";
 import TableComponent from "../components/TableComponent.vue";
-import axios from "../config/axios";
+import { getRooms, deleteRoom } from "../services/rooms";
 import { useRouter } from "vue-router";
 import IndicatorPageComponent from "../components/IndicatorPageComponent.vue";
 import RoomIconVue from "../assets/icons/RoomIcon.vue";
 import HomeLayout from "../layouts/HomeLayout.vue";
 
 const router = useRouter();
-const rooms = ref([]);
-
 const { id } = router.currentRoute.value.params;
+const rooms = ref([]);
+const swal = inject("$swal");
+
+const getDataRooms = async () => {
+  const { data } = await getRooms(id);
+  rooms.value = data;
+};
 
 onMounted(async () => {
-  const { data } = await axios.get(`/rooms/${id}`);
-  rooms.value = data.data;
+  await getDataRooms();
 });
 
 const columns = [
@@ -44,11 +48,39 @@ const actions = [
   {
     label: "Eliminar",
     class: "btn btn-danger btn-sm px-3 d-flex m-auto",
-    action: (room) => {
-      alert(`Eliminar ${room?.id}`);
-    },
+    action: (room) => handleDelete(room?.id),
   },
 ];
+
+const handleDelete = async (idRoom) => {
+  try {
+    const { isConfirmed, isDismissed } = await swal.fire({
+      title: "¿Estás seguro?",
+      text: "No podrás revertir esta acción",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Sí, eliminar",
+      cancelButtonText: "Cancelar",
+    });
+    if (isConfirmed) {
+      await deleteRoom(idRoom);
+      await getDataRooms();
+      swal.fire("Eliminado", "La habitación ha sido eliminada", "success");
+    }
+
+    if (isDismissed) {
+      swal.fire("Cancelado", "Conservaremos la habitación", "info");
+    }
+  } catch (error) {
+    swal.fire("¡Oops!", "Algo salió mal", "error");
+  }
+};
+
+const goToCreateRoom = () => {
+  router.push({ name: "CreateRoom", query: { hotelId: id } });
+};
 </script>
 <template>
   <HomeLayout>
@@ -56,6 +88,7 @@ const actions = [
     <IndicatorPageComponent
       :currentPage="'Habitaciones'"
       :label="'Crear Habitación'"
+      :buttonAction="goToCreateRoom"
     >
       <template #svgIcon>
         <RoomIconVue />
