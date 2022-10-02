@@ -18,10 +18,11 @@ const breadCrumbName = computed(() => {
 });
 
 const navigate = (path) => {
+  const { hotelId } = router.currentRoute.value.query;
   router.push({
     name: path,
     params: {
-      id: state?.infoRoom?.hotel_id,
+      id: state?.infoRoom?.hotel_id || hotelId,
     },
   });
 };
@@ -64,9 +65,9 @@ onMounted(async () => {
 </template>
 
 <style scoped>
-.breadcrumb-item+.breadcrumb-item::before {
+.breadcrumb-item + .breadcrumb-item::before {
   float: left;
-  padding-right: 0.5rem;;
+  padding-right: 0.5rem;
   content: "";
 }
 </style>
