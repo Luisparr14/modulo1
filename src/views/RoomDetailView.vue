@@ -4,16 +4,16 @@ import IndicatorPageComponent from "../components/IndicatorPageComponent.vue";
 import HotelIconVue from "../assets/icons/HotelIcon.vue";
 import BreadCrumbComponent from "../components/BreadCrumbComponent.vue";
 import FormComponent from "../components/FormComponent.vue";
-import { onMounted, ref, computed, reactive } from "vue";
+import { onMounted, ref, computed, reactive, inject } from "vue";
 import { useRouter } from "vue-router";
-import { getRoom, getRoomTypes } from "../services/rooms";
+import { getRoom, getRoomTypes, updateRoom } from "../services/rooms";
 import { getAccommodationsTypes } from "../services/accommodation";
 
 const router = useRouter();
 const { id } = router.currentRoute.value.params;
 const fields = ref([]);
 const state = reactive({});
-
+const swal = inject("$swal");
 const currentPage = computed(() => {
   return state?.infoRoom?.hotel?.name;
 });
@@ -31,7 +31,7 @@ onMounted(async () => {
         value: roomType.id,
         label: roomType.name,
       })),
-      name: "type",
+      name: "room_type_id",
       id: "type",
       value: state.infoRoom.type.id,
     },
@@ -42,7 +42,7 @@ onMounted(async () => {
         value: item.id,
         label: item.name,
       })),
-      name: "accommodation",
+      name: "accommodation_id",
       id: "accommodation",
       value: state.infoRoom.accommodation.id,
     },
@@ -57,7 +57,25 @@ onMounted(async () => {
 });
 
 const onSubmit = async (form) => {
-  console.log(form);
+  const { id: hotelId } = state.infoRoom.hotel;
+  form = {
+    ...form,
+    hotel_id: hotelId,
+  };
+  try {
+    const { message } = await updateRoom(id, form);
+    await swal.fire({
+      icon: "success",
+      title: message,
+    });
+    router.push(`/hoteles/habitaciones/${hotelId}`);
+  } catch (error) {
+    const { message } = error.response.data;
+    swal.fire({
+      icon: "error",
+      title: message,
+    });
+  }
 };
 </script>
 <template>
