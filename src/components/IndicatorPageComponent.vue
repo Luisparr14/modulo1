@@ -36,7 +36,7 @@ defineProps({
 </script>
 <template>
   <section :class="classProp" class="pb-4 pt-2">
-    <div class="d-flex flex-row align-items-center indicator">
+    <div class="d-flex flex-row align-items-center indicator flex-wrap">
       <div>
         <slot name="svgIcon"></slot>
       </div>
