@@ -44,7 +44,9 @@ onMounted(async () => {
         :key="index"
         class="breadcrumb-item"
       >
-        <i class="fas fa-chevron-right mx-1"></i>
+        <template v-if="index !== 0">
+          <i class="fas fa-chevron-right mx-1"></i>
+        </template>
         <span
           v-if="index === breadcrumbs.length - 1"
           class="pointer text-decoration-none text-primary fw-bold"
@@ -66,8 +68,7 @@ onMounted(async () => {
 
 <style scoped>
 .breadcrumb-item + .breadcrumb-item::before {
-  float: left;
-  padding-right: 0.5rem;
+  padding: 0 !important;
   content: "";
 }
 </style>
